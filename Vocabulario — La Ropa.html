@@ -1,0 +1,698 @@
+<!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#fff;color:#000}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>
+<title>Vocabulario — La Ropa</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800;900&family=DM+Sans:ital,wght@0,400;0,500;0,600;1,400&display=swap">
+<style>
+:root{
+  --bg:#070019;--bg2:#0d0026;--bg3:#130030;--bg4:#1a003a;
+  --mag:#ff2bbf;--cyan:#37d7ff;--lime:#b6f542;--gold:#ffd166;
+  --purple:#a855f7;--coral:#ff6b6b;--mint:#34eca0;--orange:#ff8c42;
+  --text:#e8d9ff;--muted:#7a6090;--muted2:#3d2555;
+  --good:#34eca0;--bad:#ff6b6b;
+  --display:'Syne',sans-serif;--font:'DM Sans',sans-serif;
+  color-scheme:dark;
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html,body{height:100%}
+body{background:var(--bg);color:var(--text);font-family:var(--font);font-size:15px;
+  padding-left:max(16px,env(safe-area-inset-left,0px));
+  padding-right:max(16px,env(safe-area-inset-right,0px));
+  padding-bottom:60px}
+
+.site-header{
+  background:linear-gradient(160deg,#08001c 0%,#140030 100%);
+  border-bottom:1px solid rgba(255,43,191,.14);
+  padding:22px max(20px,env(safe-area-inset-left,0px)) 16px;
+  position:sticky;top:env(safe-area-inset-top,0px);z-index:60;
+}
+body::before{content:'';position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);background:#08001c;z-index:61}
+.header-inner{max-width:1100px;margin:0 auto;display:flex;align-items:flex-end;justify-content:space-between;gap:16px;flex-wrap:wrap}
+.brand{font-family:var(--display);font-size:.72rem;font-weight:900;color:var(--mag);letter-spacing:.1em;text-transform:uppercase;margin-bottom:4px}
+.h1{font-family:var(--display);font-size:1.7rem;font-weight:900;color:#fff;line-height:1;letter-spacing:-.01em}
+.h1 em{font-style:normal;color:var(--room-color,var(--cyan))}
+.header-meta{display:flex;gap:8px;align-items:center;flex-wrap:wrap}
+.badge{font-family:var(--display);font-size:.68rem;font-weight:900;letter-spacing:.06em;text-transform:uppercase;
+  padding:4px 12px;border-radius:20px;border:1px solid;white-space:nowrap}
+.badge-level{background:rgba(182,245,66,.1);border-color:rgba(182,245,66,.3);color:var(--lime)}
+.badge-count{background:rgba(55,215,255,.08);border-color:rgba(55,215,255,.2);color:var(--cyan)}
+
+.tabs-strip{
+  background:var(--bg2);border-bottom:1px solid rgba(255,255,255,.06);
+  position:sticky;top:calc(env(safe-area-inset-top,0px) + 76px);z-index:50;
+  overflow-x:auto;
+}
+.tabs-strip::-webkit-scrollbar{display:none}
+.tabs-inner{display:flex;width:max-content;padding:0 max(16px,env(safe-area-inset-left,0px))}
+.room-tab{
+  font-family:var(--display);font-size:.68rem;font-weight:900;letter-spacing:.06em;text-transform:uppercase;
+  padding:13px 20px;border:0;background:transparent;color:var(--muted);cursor:pointer;
+  border-bottom:2px solid transparent;white-space:nowrap;transition:.15s;
+}
+.room-tab:hover{color:var(--text)}
+.room-tab.active{color:#fff;border-bottom-color:var(--room-color,var(--mag))}
+
+.page{display:none;max-width:1100px;margin:0 auto;padding-top:32px}
+.page.active{display:block}
+
+.room-title-row{display:flex;align-items:baseline;gap:12px;margin-bottom:6px;flex-wrap:wrap}
+.room-name{font-family:var(--display);font-size:2rem;font-weight:900;color:#fff;letter-spacing:-.02em}
+.room-name span{color:var(--room-color,var(--cyan))}
+.room-count{font-size:.75rem;color:var(--muted);font-weight:500}
+.room-desc{font-size:.82rem;color:var(--muted);margin-bottom:24px;line-height:1.6;max-width:540px}
+
+.view-row{display:flex;align-items:center;justify-content:space-between;margin-bottom:18px;flex-wrap:wrap;gap:10px}
+.view-btns{display:flex;gap:5px}
+.vbtn{font-family:var(--display);font-size:.65rem;font-weight:900;letter-spacing:.04em;text-transform:uppercase;
+  padding:5px 13px;border-radius:8px;border:1px solid var(--muted2);background:transparent;
+  color:var(--muted);cursor:pointer;transition:.13s}
+.vbtn.active{background:rgba(255,255,255,.06);border-color:rgba(255,255,255,.2);color:#fff}
+
+.fc-grid{display:grid;gap:10px;grid-template-columns:repeat(auto-fill,minmax(190px,1fr))}
+.fc-wrap{perspective:900px;height:148px;cursor:pointer}
+.fc-inner{width:100%;height:100%;position:relative;transform-style:preserve-3d;
+  transition:transform .42s cubic-bezier(.4,.2,.2,1)}
+.fc-wrap.flipped .fc-inner{transform:rotateY(180deg)}
+.fc-face{
+  position:absolute;inset:0;backface-visibility:hidden;-webkit-backface-visibility:hidden;
+  border-radius:12px;padding:16px 18px;display:flex;flex-direction:column;overflow:hidden;
+  background:var(--bg3);border:1px solid rgba(255,255,255,.07);
+}
+.fc-face::after{content:'';position:absolute;inset:0;border-radius:12px;
+  background:radial-gradient(ellipse at 15% 15%,rgba(255,255,255,.03),transparent 60%);pointer-events:none}
+.fc-back-face{transform:rotateY(180deg);background:var(--bg4);border-color:rgba(255,255,255,.1)}
+.fc-word{font-family:var(--display);font-size:1.05rem;font-weight:900;color:#fff;flex:1;
+  display:flex;align-items:center;line-height:1.2;word-break:break-word}
+.fc-article{font-size:.72rem;color:var(--room-color,var(--cyan));font-weight:700;font-family:var(--display);
+  letter-spacing:.04em;text-transform:uppercase;margin-bottom:6px}
+.fc-cue{font-size:.6rem;color:var(--muted2);margin-top:auto;padding-top:6px;font-weight:600}
+.fc-back-es{font-family:var(--display);font-size:.9rem;font-weight:900;color:#fff;margin-bottom:4px}
+.fc-transl{font-size:.88rem;color:var(--room-color,var(--cyan));font-weight:700;margin-bottom:8px}
+.fc-example{font-size:.72rem;color:var(--muted);line-height:1.55;font-style:italic}
+.fc-example em{font-style:normal;color:var(--text);font-weight:600}
+
+.word-list{display:flex;flex-direction:column;gap:4px}
+.word-row{display:grid;grid-template-columns:1fr 1fr;gap:0 16px;align-items:start;
+  background:var(--bg3);border:1px solid rgba(255,255,255,.05);border-radius:9px;
+  padding:10px 16px;transition:.12s}
+.word-row:hover{background:var(--bg4);border-color:rgba(255,255,255,.1)}
+.wr-es{font-family:var(--display);font-size:.9rem;font-weight:900;color:#fff}
+.wr-en{font-size:.82rem;color:var(--room-color,var(--cyan));font-weight:600;align-self:center}
+.wr-ex{grid-column:1/-1;font-size:.72rem;color:var(--muted);font-style:italic;margin-top:3px;line-height:1.5}
+.wr-ex em{font-style:normal;color:var(--text);font-weight:600}
+
+.section-divider{height:1px;background:linear-gradient(90deg,transparent,var(--muted2),transparent);
+  margin:36px 0 32px;opacity:.5}
+
+.ex-header{margin-bottom:20px}
+.ex-title{font-family:var(--display);font-size:1.1rem;font-weight:900;color:#fff;margin-bottom:4px}
+.ex-subtitle{font-size:.78rem;color:var(--muted);font-weight:500}
+.ex-type-tabs{display:flex;gap:7px;margin-bottom:22px;flex-wrap:wrap}
+.extab{font-family:var(--display);font-size:.65rem;font-weight:900;letter-spacing:.05em;text-transform:uppercase;
+  padding:5px 14px;border-radius:20px;border:1px solid var(--muted2);background:transparent;
+  color:var(--muted);cursor:pointer;transition:.13s}
+.extab:hover{color:var(--text)}
+.extab.active{border-color:var(--room-color,var(--mag));color:var(--room-color,var(--mag));
+  background:rgba(255,255,255,.04)}
+.ex-panel{display:none}
+.ex-panel.active{display:block}
+
+.match-cols{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:16px}
+.match-col-head{font-family:var(--display);font-size:.6rem;font-weight:900;letter-spacing:.08em;
+  text-transform:uppercase;color:var(--muted);margin-bottom:8px}
+.match-chip{background:var(--bg3);border:1px solid rgba(255,255,255,.08);border-radius:9px;
+  padding:9px 14px;margin-bottom:6px;font-size:.83rem;font-weight:600;cursor:pointer;
+  transition:.13s;user-select:none;line-height:1.3}
+.match-chip:hover:not(.correct):not(.locked){border-color:rgba(255,255,255,.2);background:var(--bg4)}
+.match-chip.selected{border-color:var(--room-color,var(--mag));background:rgba(255,43,191,.07);color:#fff}
+.match-chip.correct{border-color:var(--good);background:rgba(52,236,160,.08);color:var(--good);cursor:default}
+.match-chip.wrong{border-color:var(--bad);background:rgba(255,107,107,.07);animation:shake .28s}
+@keyframes shake{0%,100%{transform:translateX(0)}30%{transform:translateX(-5px)}70%{transform:translateX(5px)}}
+.match-score{font-family:var(--display);font-size:.82rem;font-weight:900;color:var(--good);margin-top:4px;min-height:1.4em}
+
+.word-bank{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:16px;
+  padding:12px 14px;background:var(--bg3);border-radius:10px;border:1px solid rgba(255,255,255,.06)}
+.bank-label{font-family:var(--display);font-size:.58rem;font-weight:900;letter-spacing:.08em;
+  text-transform:uppercase;color:var(--muted);width:100%;margin-bottom:4px}
+.bank-chip{font-family:var(--display);font-size:.72rem;font-weight:900;letter-spacing:.03em;
+  padding:4px 11px;border-radius:20px;background:var(--bg4);border:1px solid rgba(255,255,255,.1);
+  color:var(--text);cursor:pointer;transition:.12s}
+.bank-chip:hover:not(.used){border-color:var(--room-color,var(--mag));color:var(--room-color,var(--mag))}
+.bank-chip.used{opacity:.28;pointer-events:none;text-decoration:line-through}
+
+.fill-list{display:flex;flex-direction:column;gap:14px}
+.fill-q{display:flex;align-items:flex-start;gap:10px;flex-wrap:wrap}
+.fill-num{font-family:var(--display);font-size:.72rem;font-weight:900;color:var(--muted);min-width:20px;padding-top:9px}
+.fill-sentence{font-size:.9rem;color:var(--text);line-height:1.9;flex:1;min-width:0}
+.fill-input{background:var(--bg3);border:0;border-bottom:2px solid rgba(255,255,255,.18);
+  color:#fff;font-family:var(--display);font-size:.88rem;font-weight:900;
+  padding:2px 8px;width:140px;outline:none;transition:.15s;border-radius:0;vertical-align:middle}
+.fill-input:focus{border-bottom-color:var(--room-color,var(--mag))}
+.fill-input.ok{border-bottom-color:var(--good);color:var(--good)}
+.fill-input.no{border-bottom-color:var(--bad)}
+.fill-fb{font-size:.72rem;margin-top:2px;padding-left:30px;font-weight:600;min-height:1.2em}
+.fill-fb.ok{color:var(--good)}
+.fill-fb.no{color:var(--bad)}
+
+.mc-list{display:flex;flex-direction:column;gap:20px}
+.mc-q-text{font-size:.9rem;font-weight:600;color:var(--text);margin-bottom:9px;line-height:1.55}
+.mc-q-text strong{color:var(--room-color,var(--cyan))}
+.mc-opts{display:flex;flex-direction:column;gap:4px}
+.mc-opt{background:var(--bg3);border:1px solid rgba(255,255,255,.07);border-radius:9px;
+  padding:8px 14px;font-size:.83rem;font-weight:500;cursor:pointer;transition:.12s;
+  text-align:left;color:var(--text);display:flex;align-items:center;gap:10px}
+.mc-opt-letter{font-family:var(--display);font-size:.65rem;font-weight:900;width:18px;flex-shrink:0;color:var(--muted)}
+.mc-opt:hover:not(:disabled){background:var(--bg4);border-color:rgba(255,255,255,.18)}
+.mc-opt.correct{border-color:var(--good);background:rgba(52,236,160,.09);color:var(--good)}
+.mc-opt.correct .mc-opt-letter{color:var(--good)}
+.mc-opt.wrong{border-color:var(--bad);background:rgba(255,107,107,.07);color:var(--bad)}
+.mc-opt.wrong .mc-opt-letter{color:var(--bad)}
+.mc-opt:disabled{cursor:default}
+.mc-score{font-family:var(--display);font-size:.82rem;font-weight:900;margin-top:16px;color:var(--text);min-height:1.4em}
+.mc-score span{color:var(--room-color,var(--cyan))}
+
+.action-row{display:flex;gap:8px;margin-top:18px;flex-wrap:wrap}
+.btn-verify{font-family:var(--display);font-size:.7rem;font-weight:900;letter-spacing:.05em;text-transform:uppercase;
+  background:linear-gradient(135deg,var(--room-color,var(--mag)),var(--room-color2,#c020a0));
+  border:0;color:#fff;padding:9px 22px;border-radius:9px;cursor:pointer;transition:.13s}
+.btn-verify:hover{opacity:.85}
+.btn-reset{font-family:var(--display);font-size:.65rem;font-weight:700;letter-spacing:.04em;text-transform:uppercase;
+  background:transparent;border:1px solid var(--muted2);color:var(--muted);
+  padding:8px 16px;border-radius:9px;cursor:pointer;transition:.13s}
+.btn-reset:hover{color:var(--text);border-color:rgba(255,255,255,.2)}
+
+@media(max-width:540px){
+  .fc-grid{grid-template-columns:repeat(2,1fr)}
+  .fc-wrap{height:136px}
+  .match-cols{grid-template-columns:1fr}
+  .word-row{grid-template-columns:1fr}
+  .h1{font-size:1.35rem}
+}
+</style>
+
+<div class="site-header">
+  <div class="header-inner">
+    <div>
+      <div class="brand">YMF · Vocabulario</div>
+      <div class="h1">La <em>Ropa</em></div>
+    </div>
+    <div class="header-meta">
+      <span class="badge badge-level">A1 · Principiante</span>
+      <span class="badge badge-count" id="totalBadge">100 palabras</span>
+    </div>
+  </div>
+</div>
+
+<div class="tabs-strip">
+  <div class="tabs-inner" id="roomTabs"></div>
+</div>
+<div id="roomPages"></div>
+
+<script>
+const ROOMS=[
+  {
+    id:'superior',
+    name:'Ropa superior',
+    color:'#ff2bbf',color2:'#c020a0',
+    desc:'La ropa que se usa en la parte de arriba del cuerpo.',
+    words:[
+      {es:'la playera',      en:'the T-shirt',           ex:'Mi <em>playera</em> favorita es negra.'},
+      {es:'la camisa',       en:'the shirt (button-up)',  ex:'La <em>camisa</em> es de cuadros.'},
+      {es:'la blusa',        en:'the blouse',             ex:'La <em>blusa</em> es de seda.'},
+      {es:'el suéter',       en:'the sweater',            ex:'El <em>suéter</em> es de lana.'},
+      {es:'la sudadera',     en:'the sweatshirt / hoodie',ex:'Mi <em>sudadera</em> tiene capucha.'},
+      {es:'el saco',         en:'the blazer / jacket',    ex:'El <em>saco</em> es gris.'},
+      {es:'el abrigo',       en:'the coat / overcoat',    ex:'El <em>abrigo</em> es muy calientito.'},
+      {es:'la chamarra',     en:'the jacket',             ex:'Trae tu <em>chamarra</em>, hace frío.'},
+      {es:'el chaleco',      en:'the vest / waistcoat',   ex:'El <em>chaleco</em> es de mezclilla.'},
+      {es:'el top',          en:'the top / crop top',     ex:'El <em>top</em> es de colores.'},
+      {es:'el tank top',     en:'the tank top',           ex:'Uso <em>tank top</em> en verano.'},
+      {es:'la camiseta interior',en:'the undershirt',     ex:'La <em>camiseta interior</em> es blanca.'},
+      {es:'el polo',         en:'the polo shirt',         ex:'El <em>polo</em> tiene cuello.'},
+      {es:'la camisa de flanela',en:'the flannel shirt',  ex:'La <em>camisa de flanela</em> es abrigadora.'},
+      {es:'el cuello',       en:'the collar / neckline',  ex:'La camisa tiene el <em>cuello</em> abierto.'},
+      {es:'la manga',        en:'the sleeve',             ex:'La <em>manga</em> larga abriga más.'},
+      {es:'el botón',        en:'the button',             ex:'Se cayó un <em>botón</em> de la camisa.'},
+      {es:'el cierre',       en:'the zipper',             ex:'El <em>cierre</em> está atorado.'},
+      {es:'el bolsillo',     en:'the pocket',             ex:'Traigo el celular en el <em>bolsillo</em>.'},
+      {es:'la talla',        en:'the size (clothing)',    ex:'¿Cuál es tu <em>talla</em>?'},
+    ],
+    match:[
+      ['la playera','the T-shirt'],['la chamarra','the jacket'],['el suéter','the sweater'],
+      ['la sudadera','the hoodie'],['el abrigo','the coat'],['el chaleco','the vest'],
+      ['el bolsillo','the pocket'],['la talla','the size'],
+    ],
+    fill:[
+      {s:'Trae tu ____, hace frío.',          a:'chamarra',   h:'jacket'},
+      {s:'Mi ____ favorita es negra.',         a:'playera',    h:'T-shirt'},
+      {s:'El ____ está atorado.',              a:'cierre',     h:'zipper'},
+      {s:'La ____ larga abriga más.',          a:'manga',      h:'sleeve'},
+      {s:'¿Cuál es tu ____?',                  a:'talla',      h:'size'},
+      {s:'El ____ es de lana.',                a:'suéter',     h:'sweater'},
+      {s:'Se cayó un ____ de la camisa.',       a:'botón',      h:'button'},
+      {s:'Traigo el celular en el ____.',       a:'bolsillo',   h:'pocket'},
+    ],
+    mc:[
+      {q:'What is "la chamarra"?',   opts:['the coat','the jacket','the vest','the blazer'],         ok:1},
+      {q:'"La sudadera" means…',     opts:['the sweater','the sweatshirt/hoodie','the top','the shirt'],ok:1},
+      {q:'Which word means "the sleeve"?', opts:['el cuello','el botón','la manga','el cierre'],     ok:2},
+      {q:'What is "el chaleco"?',    opts:['the jacket','the coat','the blazer','the vest'],         ok:3},
+      {q:'"La playera" means…',      opts:['the blouse','the polo shirt','the T-shirt','the top'],   ok:2},
+    ],
+  },
+  {
+    id:'inferior',
+    name:'Ropa inferior',
+    color:'#37d7ff',color2:'#1a90c0',
+    desc:'La ropa que se usa en la parte de abajo del cuerpo.',
+    words:[
+      {es:'el pantalón',     en:'the pants / trousers',   ex:'El <em>pantalón</em> es azul.'},
+      {es:'los jeans',       en:'the jeans',              ex:'Mis <em>jeans</em> son de mezclilla.'},
+      {es:'el short',        en:'the shorts',             ex:'Uso <em>short</em> en el gym.'},
+      {es:'la falda',        en:'the skirt',              ex:'La <em>falda</em> es larga.'},
+      {es:'el vestido',      en:'the dress',              ex:'El <em>vestido</em> es de flores.'},
+      {es:'los pants',       en:'the sweatpants / track pants', ex:'Los <em>pants</em> son muy cómodos.'},
+      {es:'las mallas',      en:'the leggings / tights',  ex:'Las <em>mallas</em> son negras.'},
+      {es:'el mameluco',     en:'the jumpsuit / romper',  ex:'El <em>mameluco</em> es de una pieza.'},
+      {es:'la bermuda',      en:'the bermuda shorts',     ex:'La <em>bermuda</em> me queda bien.'},
+      {es:'el overol',       en:'the overalls',           ex:'El <em>overol</em> es de mezclilla.'},
+      {es:'la falda pantalón',en:'the culottes / skirt-pants',ex:'La <em>falda pantalón</em> es cómoda.'},
+      {es:'el calzón',       en:'the underwear / panties',ex:'El <em>calzón</em> es de algodón.'},
+      {es:'el bóxer',        en:'the boxers',             ex:'El <em>bóxer</em> es cómodo.'},
+      {es:'la tanga',        en:'the thong',              ex:'La <em>tanga</em> no se marca.'},
+      {es:'las medias',      en:'the stockings / pantyhose',ex:'Las <em>medias</em> son negras.'},
+      {es:'los calcetines',  en:'the socks',              ex:'Los <em>calcetines</em> son blancos.'},
+      {es:'la cintura',      en:'the waist / waistband',  ex:'La <em>cintura</em> del pantalón es ancha.'},
+      {es:'el dobladillo',   en:'the hem',                ex:'El <em>dobladillo</em> está deshilachado.'},
+      {es:'la bragueta',     en:'the fly / zipper (pants)',ex:'La <em>bragueta</em> está abierta.'},
+      {es:'la pretina',      en:'the waistband',          ex:'La <em>pretina</em> es elástica.'},
+    ],
+    match:[
+      ['el pantalón','the trousers'],['los jeans','the jeans'],['la falda','the skirt'],
+      ['el vestido','the dress'],['los pants','the sweatpants'],['las mallas','the leggings'],
+      ['los calcetines','the socks'],['el overol','the overalls'],
+    ],
+    fill:[
+      {s:'Los ____ son de mezclilla.',         a:'jeans',      h:'jeans'},
+      {s:'Los ____ son muy cómodos.',           a:'pants',      h:'sweatpants'},
+      {s:'Las ____ son negras.',                a:'mallas',     h:'leggings'},
+      {s:'Los ____ son blancos.',               a:'calcetines', h:'socks'},
+      {s:'La ____ del pantalón es ancha.',      a:'cintura',    h:'waistband'},
+      {s:'El ____ es de una pieza.',             a:'mameluco',   h:'jumpsuit'},
+      {s:'La ____ es larga.',                    a:'falda',      h:'skirt'},
+      {s:'La ____ es elástica.',                 a:'pretina',    h:'waistband (elastic)'},
+    ],
+    mc:[
+      {q:'What is "los pants"?',     opts:['the jeans','the shorts','the sweatpants','the leggings'],  ok:2},
+      {q:'"Las mallas" means…',      opts:['the stockings','the socks','the tights/leggings','the shorts'],ok:2},
+      {q:'Which word means "the skirt"?', opts:['el vestido','la falda','las medias','el mameluco'],   ok:1},
+      {q:'What is "el overol"?',     opts:['the uniform','the jumpsuit','the overalls','the romper'],  ok:2},
+      {q:'"El dobladillo" means…',   opts:['the zipper','the waistband','the button','the hem'],       ok:3},
+    ],
+  },
+  {
+    id:'calzado',
+    name:'Calzado y accesorios',
+    color:'#ffd166',color2:'#c09000',
+    desc:'Lo que va en los pies y los complementos que completan el outfit.',
+    words:[
+      {es:'los tenis',       en:'the sneakers / trainers',ex:'Mis <em>tenis</em> son Nike.'},
+      {es:'los zapatos',     en:'the shoes',              ex:'Los <em>zapatos</em> de cuero son caros.'},
+      {es:'las botas',       en:'the boots',              ex:'Las <em>botas</em> son de piel.'},
+      {es:'las sandalias',   en:'the sandals',            ex:'Las <em>sandalias</em> son cómodas.'},
+      {es:'los tacones',     en:'the high heels',         ex:'Los <em>tacones</em> son altos.'},
+      {es:'las chanclas',    en:'the flip-flops / slippers',ex:'Uso <em>chanclas</em> en casa.'},
+      {es:'los mocasines',   en:'the loafers / moccasins',ex:'Los <em>mocasines</em> son elegantes.'},
+      {es:'las plataformas', en:'the platform shoes',     ex:'Las <em>plataformas</em> son muy altas.'},
+      {es:'el cinturón',     en:'the belt',               ex:'El <em>cinturón</em> es de cuero.'},
+      {es:'la bolsa',        en:'the bag / purse',        ex:'La <em>bolsa</em> es de marca.'},
+      {es:'la mochila',      en:'the backpack',           ex:'La <em>mochila</em> pesa mucho.'},
+      {es:'el sombrero',     en:'the hat (wide brim)',    ex:'El <em>sombrero</em> es de paja.'},
+      {es:'la gorra',        en:'the cap / baseball cap', ex:'La <em>gorra</em> es del América.'},
+      {es:'la bufanda',      en:'the scarf',              ex:'La <em>bufanda</em> me abriga el cuello.'},
+      {es:'los guantes',     en:'the gloves',             ex:'Los <em>guantes</em> son de lana.'},
+      {es:'el reloj',        en:'the watch',              ex:'El <em>reloj</em> es de plata.'},
+      {es:'los lentes',      en:'the glasses / sunglasses',ex:'Mis <em>lentes</em> son oscuros.'},
+      {es:'el collar',       en:'the necklace',           ex:'El <em>collar</em> es de oro.'},
+      {es:'los aretes',      en:'the earrings',           ex:'Los <em>aretes</em> son de plata.'},
+      {es:'la pulsera',      en:'the bracelet',           ex:'La <em>pulsera</em> es de cuero.'},
+    ],
+    match:[
+      ['los tenis','the sneakers'],['las botas','the boots'],['las chanclas','the flip-flops'],
+      ['el cinturón','the belt'],['la bufanda','the scarf'],['los guantes','the gloves'],
+      ['los aretes','the earrings'],['la pulsera','the bracelet'],
+    ],
+    fill:[
+      {s:'Mis ____ son Nike.',                  a:'tenis',      h:'sneakers'},
+      {s:'La ____ me abriga el cuello.',         a:'bufanda',    h:'scarf'},
+      {s:'El ____ es de cuero.',                 a:'cinturón',   h:'belt'},
+      {s:'Los ____ son de lana.',                a:'guantes',    h:'gloves'},
+      {s:'La ____ es de marca.',                 a:'bolsa',      h:'bag/purse'},
+      {s:'El ____ es de plata.',                 a:'reloj',      h:'watch'},
+      {s:'Los ____ son oscuros.',                a:'lentes',     h:'glasses/sunglasses'},
+      {s:'Los ____ son altos.',                  a:'tacones',    h:'high heels'},
+    ],
+    mc:[
+      {q:'What is "las chanclas"?',  opts:['the sandals','the flip-flops/slippers','the clogs','the boots'],ok:1},
+      {q:'"Los aretes" means…',      opts:['the rings','the necklace','the earrings','the bracelets'],      ok:2},
+      {q:'Which word means "the cap"?', opts:['el sombrero','la gorra','el casco','el gorro'],             ok:1},
+      {q:'What is "la mochila"?',    opts:['the bag','the purse','the suitcase','the backpack'],           ok:3},
+      {q:'"Las plataformas" means…', opts:['the flats','the wedges','the platform shoes','the heels'],     ok:2},
+    ],
+  },
+  {
+    id:'formal',
+    name:'Ropa formal',
+    color:'#a855f7',color2:'#7020c0',
+    desc:'La ropa para ocasiones especiales, trabajo o eventos formales.',
+    words:[
+      {es:'el traje',        en:'the suit',               ex:'El <em>traje</em> es negro.'},
+      {es:'el vestido de noche',en:'the evening gown',    ex:'El <em>vestido de noche</em> es largo.'},
+      {es:'la corbata',      en:'the tie',                ex:'La <em>corbata</em> es de rayas.'},
+      {es:'el moño / la pajarita',en:'the bow tie',       ex:'El <em>moño</em> es elegante.'},
+      {es:'el esmoquin',     en:'the tuxedo',             ex:'El <em>esmoquin</em> es para la boda.'},
+      {es:'el saco',         en:'the blazer / suit jacket',ex:'El <em>saco</em> combina con el pantalón.'},
+      {es:'el pantalón de vestir',en:'the dress pants',   ex:'El <em>pantalón de vestir</em> es gris.'},
+      {es:'la falda de vestir',en:'the dress skirt',      ex:'La <em>falda de vestir</em> es azul marino.'},
+      {es:'la camisa de vestir',en:'the dress shirt',     ex:'La <em>camisa de vestir</em> es blanca.'},
+      {es:'los zapatos de vestir',en:'the dress shoes',   ex:'Los <em>zapatos de vestir</em> son negros.'},
+      {es:'el pañuelo',      en:'the pocket square / handkerchief', ex:'El <em>pañuelo</em> es de seda.'},
+      {es:'los gemelos',     en:'the cufflinks',          ex:'Los <em>gemelos</em> son de plata.'},
+      {es:'el traje sastre', en:'the women\'s pantsuit',  ex:'El <em>traje sastre</em> es elegante.'},
+      {es:'el vestido de cóctel',en:'the cocktail dress', ex:'El <em>vestido de cóctel</em> es rojo.'},
+      {es:'la mascada',      en:'the silk scarf',         ex:'La <em>mascada</em> es de Hermès.'},
+      {es:'el broche',       en:'the brooch / pin',       ex:'El <em>broche</em> es de oro.'},
+      {es:'la faja',         en:'the girdle / shaper',    ex:'La <em>faja</em> es incómoda.'},
+      {es:'el forro',        en:'the lining (of clothing)',ex:'El <em>forro</em> del abrigo es de seda.'},
+      {es:'el escote',       en:'the neckline / décolleté',ex:'El <em>escote</em> es en V.'},
+      {es:'la solapa',       en:'the lapel',              ex:'La <em>solapa</em> del saco es ancha.'},
+    ],
+    match:[
+      ['el traje','the suit'],['la corbata','the tie'],['el esmoquin','the tuxedo'],
+      ['los gemelos','the cufflinks'],['el pañuelo','the pocket square'],['la mascada','the silk scarf'],
+      ['el escote','the neckline'],['la solapa','the lapel'],
+    ],
+    fill:[
+      {s:'La ____ es de rayas.',                a:'corbata',    h:'tie'},
+      {s:'El ____ es para la boda.',             a:'esmoquin',   h:'tuxedo'},
+      {s:'Los ____ son de plata.',               a:'gemelos',    h:'cufflinks'},
+      {s:'El ____ es en V.',                     a:'escote',     h:'neckline'},
+      {s:'La ____ del saco es ancha.',            a:'solapa',     h:'lapel'},
+      {s:'El ____ es negro.',                    a:'traje',      h:'suit'},
+      {s:'El ____ del abrigo es de seda.',        a:'forro',      h:'lining'},
+      {s:'El ____ es de seda.',                  a:'pañuelo',    h:'pocket square'},
+    ],
+    mc:[
+      {q:'What is "el esmoquin"?',   opts:['the blazer','the suit','the tuxedo','the dinner jacket'],   ok:2},
+      {q:'"Los gemelos" in clothing means…', opts:['the twins','the cufflinks','the buttons','the pins'],ok:1},
+      {q:'Which word means "the lapel"?', opts:['el forro','el escote','la solapa','el broche'],        ok:2},
+      {q:'What is "la mascada"?',    opts:['the scarf','the silk scarf','the tie','the handkerchief'],  ok:1},
+      {q:'"El escote" means…',       opts:['the collar','the lapel','the neckline','the hem'],          ok:2},
+    ],
+  },
+  {
+    id:'deportiva',
+    name:'Ropa deportiva',
+    color:'#34eca0',color2:'#1aaa70',
+    desc:'La ropa para hacer deporte, ejercicio o pasar el día casual.',
+    words:[
+      {es:'la ropa deportiva',en:'the sportswear / athletic wear',ex:'La <em>ropa deportiva</em> es cómoda.'},
+      {es:'los tenis',        en:'the sneakers / trainers',ex:'Mis <em>tenis</em> son para correr.'},
+      {es:'el short deportivo',en:'the athletic shorts',  ex:'El <em>short deportivo</em> tiene bolsillos.'},
+      {es:'los pants',        en:'the sweatpants',        ex:'Los <em>pants</em> son del equipo.'},
+      {es:'la sudadera',      en:'the hoodie / sweatshirt',ex:'La <em>sudadera</em> del gym.'},
+      {es:'la playera deportiva',en:'the athletic T-shirt / jersey',ex:'La <em>playera deportiva</em> absorbe el sudor.'},
+      {es:'las mallas deportivas',en:'the athletic leggings',ex:'Las <em>mallas deportivas</em> son ajustadas.'},
+      {es:'el top deportivo', en:'the sports bra / athletic top',ex:'El <em>top deportivo</em> da soporte.'},
+      {es:'el conjunto deportivo',en:'the athletic set / tracksuit',ex:'El <em>conjunto deportivo</em> combina perfecto.'},
+      {es:'la gorra deportiva',en:'the sports cap',       ex:'La <em>gorra deportiva</em> protege del sol.'},
+      {es:'las rodilleras',   en:'the knee pads',         ex:'Las <em>rodilleras</em> protegen las rodillas.'},
+      {es:'las muñequeras',   en:'the wristbands',        ex:'Las <em>muñequeras</em> absorben el sudor.'},
+      {es:'los calcetines deportivos',en:'the athletic socks',ex:'Los <em>calcetines deportivos</em> son acolchados.'},
+      {es:'el uniforme',      en:'the uniform / kit',     ex:'El <em>uniforme</em> del equipo es rojo.'},
+      {es:'el traje de baño', en:'the swimsuit',          ex:'El <em>traje de baño</em> es de dos piezas.'},
+      {es:'el gorro de natación',en:'the swim cap',       ex:'El <em>gorro de natación</em> protege el cabello.'},
+      {es:'los goggles',      en:'the goggles (swim)',    ex:'Los <em>goggles</em> son de silicón.'},
+      {es:'la mochila deportiva',en:'the gym bag / sports backpack',ex:'La <em>mochila deportiva</em> tiene compartimentos.'},
+      {es:'la toalla deportiva',en:'the gym towel',       ex:'La <em>toalla deportiva</em> es de microfibra.'},
+      {es:'la ropa de compresión',en:'the compression wear',ex:'La <em>ropa de compresión</em> mejora la circulación.'},
+    ],
+    match:[
+      ['los tenis','the sneakers'],['los pants','the sweatpants'],['la sudadera','the hoodie'],
+      ['las rodilleras','the knee pads'],['el uniforme','the uniform'],['el traje de baño','the swimsuit'],
+      ['los goggles','the swim goggles'],['las muñequeras','the wristbands'],
+    ],
+    fill:[
+      {s:'La ____ del gym.',                    a:'sudadera',   h:'hoodie'},
+      {s:'El ____ del equipo es rojo.',          a:'uniforme',   h:'uniform'},
+      {s:'Los ____ son de silicón.',             a:'goggles',    h:'swim goggles'},
+      {s:'El ____ es de dos piezas.',            a:'traje',      h:'swimsuit — escribe: traje'},
+      {s:'Las ____ absorben el sudor.',           a:'muñequeras', h:'wristbands'},
+      {s:'Las ____ protegen las rodillas.',       a:'rodilleras', h:'knee pads'},
+      {s:'La ____ deportiva es de microfibra.',   a:'toalla',     h:'gym towel — escribe: toalla'},
+      {s:'Los ____ del equipo.',                  a:'pants',      h:'sweatpants'},
+    ],
+    mc:[
+      {q:'What is "las rodilleras"?', opts:['the shin guards','the knee pads','the elbow pads','the ankle support'],ok:1},
+      {q:'"El gorro de natación" means…', opts:['the helmet','the swim cap','the headband','the beanie'],ok:1},
+      {q:'Which word means "the wristbands"?', opts:['las rodilleras','las tobilleras','las muñequeras','las coderas'],ok:2},
+      {q:'What is "la ropa de compresión"?', opts:['the thermal wear','the compression wear','the waterproof wear','the padded wear'],ok:1},
+      {q:'"El conjunto deportivo" means…', opts:['the sports bag','the athletic set/tracksuit','the jersey','the uniform'],ok:1},
+    ],
+  },
+];
+
+function buildAll(){
+  const tabsEl=document.getElementById('roomTabs');
+  const pagesEl=document.getElementById('roomPages');
+  document.getElementById('totalBadge').textContent=
+    ROOMS.reduce((s,r)=>s+r.words.length,0)+' palabras';
+  tabsEl.innerHTML=ROOMS.map((r,i)=>`
+    <button class="room-tab${i===0?' active':''}" id="rtab_${r.id}"
+      style="--room-color:${r.color}" onclick="switchRoom('${r.id}')">
+      ${r.name}</button>`).join('');
+  pagesEl.innerHTML=ROOMS.map((r,i)=>`
+    <div class="page${i===0?' active':''}" id="rpage_${r.id}"
+      style="--room-color:${r.color};--room-color2:${r.color2}">
+      <div class="room-title-row">
+        <div class="room-name"><span>${r.name}</span></div>
+        <div class="room-count">${r.words.length} palabras</div>
+      </div>
+      <div class="room-desc">${r.desc}</div>
+      <div class="view-row">
+        <div class="view-btns">
+          <button class="vbtn active" id="vb_cards_${r.id}" onclick="setView('${r.id}','cards')">Tarjetas</button>
+          <button class="vbtn" id="vb_list_${r.id}" onclick="setView('${r.id}','list')">Lista</button>
+        </div>
+      </div>
+      <div id="vwrap_${r.id}">${buildCards(r)}</div>
+      <div class="section-divider"></div>
+      <div class="ex-header">
+        <div class="ex-title">Ejercicios — ${r.name}</div>
+        <div class="ex-subtitle">Practica el vocabulario de ${r.name.toLowerCase()}.</div>
+      </div>
+      <div class="ex-type-tabs">
+        <button class="extab active" id="et_match_${r.id}" onclick="setExType('${r.id}','match')">Relaciona</button>
+        <button class="extab" id="et_fill_${r.id}" onclick="setExType('${r.id}','fill')">Completa</button>
+        <button class="extab" id="et_mc_${r.id}" onclick="setExType('${r.id}','mc')">Selección múltiple</button>
+      </div>
+      <div id="ep_match_${r.id}" class="ex-panel active">${buildMatch(r)}</div>
+      <div id="ep_fill_${r.id}" class="ex-panel">${buildFill(r)}</div>
+      <div id="ep_mc_${r.id}" class="ex-panel">${buildMC(r)}</div>
+    </div>`).join('');
+}
+
+function buildCards(r){
+  return`<div class="fc-grid">${r.words.map((w,i)=>`
+    <div class="fc-wrap" id="fc_${r.id}_${i}" onclick="flip('${r.id}',${i})">
+      <div class="fc-inner">
+        <div class="fc-face">
+          <div class="fc-article" style="color:${r.color}">${getArticle(w.es)}</div>
+          <div class="fc-word">${stripArticle(w.es)}</div>
+          <div class="fc-cue">tap to flip →</div>
+        </div>
+        <div class="fc-face fc-back-face">
+          <div class="fc-back-es">${w.es}</div>
+          <div class="fc-transl" style="color:${r.color}">${w.en}</div>
+          <div class="fc-example">${w.ex}</div>
+        </div>
+      </div>
+    </div>`).join('')}</div>`;
+}
+function getArticle(w){const m=w.match(/^(el|la|los|las|un|una)\s/);return m?m[1].toUpperCase():'';}
+function stripArticle(w){return w.replace(/^(el|la|los|las|un|una)\s/,'');}
+function flip(rid,i){document.getElementById('fc_'+rid+'_'+i)?.classList.toggle('flipped');}
+
+function buildList(r){
+  return`<div class="word-list">${r.words.map(w=>`
+    <div class="word-row">
+      <div class="wr-es">${w.es}</div>
+      <div class="wr-en">${w.en}</div>
+      <div class="wr-ex">${w.ex}</div>
+    </div>`).join('')}</div>`;
+}
+function setView(rid,mode){
+  const r=ROOMS.find(x=>x.id===rid);
+  document.getElementById('vwrap_'+rid).innerHTML=mode==='cards'?buildCards(r):buildList(r);
+  ['cards','list'].forEach(m=>document.getElementById('vb_'+m+'_'+rid)?.classList.toggle('active',m===mode));
+}
+
+function buildMatch(r){
+  const esS=[...r.match].sort(()=>Math.random()-.5);
+  const enS=[...r.match].sort(()=>Math.random()-.5);
+  return`<div class="match-cols" id="mcols_${r.id}">
+    <div><div class="match-col-head">Español</div>
+    ${esS.map((p,i)=>`<div class="match-chip" id="mes_${r.id}_${i}"
+      onclick="pickMatch('${r.id}','es',${i},'${esc(p[0])}','${esc(p[1])}')">
+      ${p[0]}</div>`).join('')}</div>
+    <div><div class="match-col-head">English</div>
+    ${enS.map((p,i)=>`<div class="match-chip" id="men_${r.id}_${i}"
+      onclick="pickMatch('${r.id}','en',${i},'${esc(p[0])}','${esc(p[1])}')">
+      ${p[1]}</div>`).join('')}</div>
+  </div>
+  <div class="match-score" id="msc_${r.id}"></div>`;
+}
+const MS={};
+function pickMatch(rid,side,idx,es,en){
+  if(!MS[rid])MS[rid]={sel:null,ok:0,tot:ROOMS.find(r=>r.id===rid).match.length};
+  const st=MS[rid];
+  const elId=(side==='es'?'mes_':'men_')+rid+'_'+idx;
+  const el=document.getElementById(elId);
+  if(!el||el.classList.contains('correct'))return;
+  if(!st.sel){
+    document.querySelectorAll('[id^="mes_'+rid+'_"],[id^="men_'+rid+'_"]').forEach(e=>e.classList.remove('selected'));
+    el.classList.add('selected');st.sel={side,idx,es,en,elId};
+  } else {
+    if(st.sel.elId===elId){el.classList.remove('selected');st.sel=null;return;}
+    const match=st.sel.es===es&&st.sel.en===en;
+    if(match){
+      [elId,st.sel.elId].forEach(id=>{const e=document.getElementById(id);
+        if(e){e.classList.remove('selected');e.classList.add('correct');}});
+      st.ok++;
+      if(st.ok>=st.tot){const sc=document.getElementById('msc_'+rid);
+        if(sc)sc.textContent='¡Perfecto! '+st.tot+'/'+st.tot+' correctas.';}
+    } else {
+      [elId,st.sel.elId].forEach(id=>{const e=document.getElementById(id);
+        if(e){e.classList.add('wrong');setTimeout(()=>e.classList.remove('wrong','selected'),500);}});
+    }
+    st.sel=null;
+  }
+}
+
+function buildFill(r){
+  return`<div class="word-bank">
+    <div class="bank-label">Banco de palabras</div>
+    ${r.fill.map(f=>`<span class="bank-chip" id="bc_${r.id}_${f.a}"
+      onclick="useBank('${r.id}','${f.a}')">${f.a}</span>`).join('')}
+  </div>
+  <div class="fill-list">${r.fill.map((f,i)=>`
+    <div>
+      <div class="fill-q">
+        <span class="fill-num">${i+1}.</span>
+        <div class="fill-sentence">${f.s.replace('____',
+          `<input class="fill-input" id="fi_${r.id}_${i}" data-ans="${f.a}"
+            placeholder="…" autocomplete="off"/>`)}</div>
+      </div>
+      <div class="fill-fb" id="ff_${r.id}_${i}"></div>
+    </div>`).join('')}
+  </div>
+  <div class="action-row">
+    <button class="btn-verify" onclick="verifyFill('${r.id}')">Verificar</button>
+    <button class="btn-reset" onclick="resetFill('${r.id}')">Reiniciar</button>
+  </div>
+  <div class="mc-score" id="fsc_${r.id}" style="margin-top:12px"></div>`;
+}
+function useBank(rid,word){
+  const r=ROOMS.find(x=>x.id===rid);
+  for(let i=0;i<r.fill.length;i++){
+    const inp=document.getElementById('fi_'+rid+'_'+i);
+    if(inp&&!inp.value){inp.value=word;break;}
+  }
+}
+function verifyFill(rid){
+  const r=ROOMS.find(x=>x.id===rid);let ok=0;
+  r.fill.forEach((f,i)=>{
+    const inp=document.getElementById('fi_'+rid+'_'+i);
+    const fb=document.getElementById('ff_'+rid+'_'+i);
+    if(!inp||!fb)return;
+    const correct=inp.value.trim().toLowerCase()===f.a.toLowerCase();
+    inp.classList.toggle('ok',correct);inp.classList.toggle('no',!correct);
+    if(correct){fb.textContent='✓ Correcto';fb.className='fill-fb ok';ok++;
+      document.getElementById('bc_'+rid+'_'+f.a)?.classList.add('used');
+    } else {fb.innerHTML=`✗ Era: <strong>${f.a}</strong> — ${f.h}`;fb.className='fill-fb no';}
+  });
+  const sc=document.getElementById('fsc_'+rid);
+  if(sc)sc.innerHTML=`Resultado: <span>${ok}/${r.fill.length}</span>`;
+}
+function resetFill(rid){
+  const r=ROOMS.find(x=>x.id===rid);
+  r.fill.forEach((f,i)=>{
+    const inp=document.getElementById('fi_'+rid+'_'+i);
+    const fb=document.getElementById('ff_'+rid+'_'+i);
+    if(inp){inp.value='';inp.className='fill-input';}
+    if(fb){fb.textContent='';fb.className='fill-fb';}
+    document.getElementById('bc_'+rid+'_'+f.a)?.classList.remove('used');
+  });
+  const sc=document.getElementById('fsc_'+rid);if(sc)sc.innerHTML='';
+}
+
+function buildMC(r){
+  const shuffled=r.mc.map(q=>({...q,opts:q.opts.map((o,i)=>({o,i})).sort(()=>Math.random()-.5)}));
+  return`<div class="mc-list">${shuffled.map((q,qi)=>`
+    <div>
+      <div class="mc-q-text">${qi+1}. ${q.q}</div>
+      <div class="mc-opts">${q.opts.map((op,pos)=>`
+        <button class="mc-opt" id="mo_${r.id}_${qi}_${pos}"
+          onclick="pickMC('${r.id}',${qi},${pos},${op.i},${q.ok})">
+          <span class="mc-opt-letter">${String.fromCharCode(65+pos)}</span>${op.o}
+        </button>`).join('')}
+      </div>
+    </div>`).join('')}
+  </div>
+  <div class="mc-score" id="mcsc_${r.id}"></div>`;
+}
+const MCS={};
+function pickMC(rid,qi,pos,origIdx,correctOrigIdx){
+  if(!MCS[rid])MCS[rid]={done:new Set(),ok:0,tot:ROOMS.find(r=>r.id===rid).mc.length};
+  const st=MCS[rid];if(st.done.has(qi))return;
+  st.done.add(qi);
+  const correct=origIdx===correctOrigIdx;
+  if(correct)st.ok++;
+  const r=ROOMS.find(x=>x.id===rid);
+  for(let p=0;p<r.mc[0].opts.length+1;p++){
+    const btn=document.getElementById('mo_'+rid+'_'+qi+'_'+p);
+    if(!btn)break;btn.disabled=true;
+  }
+  const clicked=document.getElementById('mo_'+rid+'_'+qi+'_'+pos);
+  if(clicked)clicked.classList.add(correct?'correct':'wrong');
+  if(!correct){
+    for(let p=0;p<5;p++){
+      const btn=document.getElementById('mo_'+rid+'_'+qi+'_'+p);if(!btn)break;
+      const oc=btn.getAttribute('onclick')||'';
+      const m=oc.match(/,(\d+),\d+\)$/);
+      if(m&&parseInt(m[1])===correctOrigIdx){btn.classList.add('correct');break;}
+    }
+  }
+  if(st.done.size>=st.tot){
+    const sc=document.getElementById('mcsc_'+rid);
+    if(sc)sc.innerHTML=`Resultado: <span>${st.ok}/${st.tot}</span>`;
+  }
+}
+
+function switchRoom(id){
+  ROOMS.forEach(r=>{
+    document.getElementById('rtab_'+r.id)?.classList.toggle('active',r.id===id);
+    document.getElementById('rpage_'+r.id)?.classList.toggle('active',r.id===id);
+  });
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+function setExType(rid,type){
+  ['match','fill','mc'].forEach(t=>{
+    document.getElementById('et_'+t+'_'+rid)?.classList.toggle('active',t===type);
+    document.getElementById('ep_'+t+'_'+rid)?.classList.toggle('active',t===type);
+  });
+}
+function esc(s){return s.replace(/'/g,"\\'").replace(/"/g,'&quot;');}
+
+buildAll();
+</script>
+
+</body></html>
